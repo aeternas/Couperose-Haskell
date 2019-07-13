@@ -26,5 +26,5 @@ jobs:
             - ".stack-work"
       - store_artifacts:
           # Upload test summary for display in Artifacts: https://circleci.com/docs/2.0/artifacts/ 
-          path: ~/.local/bin/circleci-couperose-haskell-exe
-          destination: circleci-couperose-haskell-exe
+          path: ~/.local/bin/circleci-couperose-haskell
+          destination: circleci-couperose-haskell
