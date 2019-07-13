@@ -1,5 +1,6 @@
 aliases:
   - &save_cache:
+    name: Cache Dependencies
     key: couperose-haskell-v1-{{ checksum "stack.yaml" }}-{{ checksum "couperose-haskell.cabal" }}
     paths:
       - "/root/.stack"
