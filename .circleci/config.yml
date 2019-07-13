@@ -6,11 +6,9 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
           name: Restore Cached Dependencies
           keys:
-            - cci-demo-haskell-v1-{{ checksum "stack.yaml" }}-{{ checksum "package.yaml" }}
-            - cci-demo-haskell-v1-{{ checksum "stack.yaml" }}
+            - couperose-haskell-v1-{{ checksum "stack.yaml" }}-{{ checksum "couperose-haskell.cabal" }}
       - run:
           name: Resolve/Update Dependencies
           command: stack --no-terminal setup
@@ -22,11 +20,11 @@ jobs:
           command: stack --no-terminal install
       - save_cache:
           name: Cache Dependencies
-          key: cci-demo-haskell-v1-{{ checksum "stack.yaml" }}-{{ checksum "package.yaml" }}
+          key: couperose-haskell-v1-{{ checksum "stack.yaml" }}-{{ checksum "couperose-haskell.cabal" }}
           paths:
             - "/root/.stack"
             - ".stack-work"
       - store_artifacts:
           # Upload test summary for display in Artifacts: https://circleci.com/docs/2.0/artifacts/ 
-          path: ~/.local/bin/circleci-demo-haskell-exe
-          destination: circleci-demo-haskell-exe
+          path: ~/.local/bin/circleci-couperose-haskell-exe
+          destination: circleci-couperose-haskell-exe
