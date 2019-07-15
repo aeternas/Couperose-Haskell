@@ -5,6 +5,10 @@ aliases:
     paths:
       - "/root/.stack"
       - ".stack-work"
+  - &restore_cache
+    name: Restore Cached Dependencies
+    keys:
+      - couperose-haskell-v1-{{ checksum "stack.yaml" }}-{{ checksum "couperose-haskell.cabal" }}
 version: 2.1
 jobs:
   build:
@@ -12,10 +16,7 @@ jobs:
       - image: fpco/stack-build:lts
     steps:
       - checkout
-      - restore_cache:
-          name: Restore Cached Dependencies
-          keys:
-            - couperose-haskell-v1-{{ checksum "stack.yaml" }}-{{ checksum "couperose-haskell.cabal" }}
+      - restore_cache: *restore_cache
       - run:
           name: Resolve/Update Dependencies
           command: stack --no-terminal setup
