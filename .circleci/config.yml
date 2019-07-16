@@ -9,6 +9,9 @@ aliases:
     name: Restore Cached Dependencies
     keys:
       - couperose-haskell-v1-{{ checksum "stack.yaml" }}-{{ checksum "couperose-haskell.cabal" }}
+  - &store_artifacts
+    path: ~/.local/bin/circleci-couperose-haskell
+    destination: circleci-couperose-haskell
 version: 2.1
 jobs:
   build:
@@ -27,7 +30,4 @@ jobs:
           name: Install executable
           command: stack --no-terminal install
       - save_cache: *save_cache
-      - store_artifacts:
-          # Upload test summary for display in Artifacts: https://circleci.com/docs/2.0/artifacts/ 
-          path: ~/.local/bin/circleci-couperose-haskell
-          destination: circleci-couperose-haskell
+      - store_artifacts: *store_artifacts
