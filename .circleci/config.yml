@@ -12,6 +12,9 @@ aliases:
   - &store_artifacts
     path: ~/.local/bin/circleci-couperose-haskell
     destination: circleci-couperose-haskell
+  - &update_dependencies
+    name: Resolve/Update Dependencies
+    command: stack --no-terminal setup
 version: 2.1
 jobs:
   build:
@@ -20,9 +23,7 @@ jobs:
     steps:
       - checkout
       - restore_cache: *restore_cache
-      - run:
-          name: Resolve/Update Dependencies
-          command: stack --no-terminal setup
+      - run: *update_dependencies
       - run:
           name: Run tests
           command: stack --no-terminal test
