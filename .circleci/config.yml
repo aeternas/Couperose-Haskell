@@ -15,6 +15,9 @@ aliases:
   - &update_dependencies
     name: Resolve/Update Dependencies
     command: stack --no-terminal setup
+  - &run_tests
+    name: Run tests
+    command: stack --no-terminal test
 version: 2.1
 jobs:
   build:
@@ -24,9 +27,7 @@ jobs:
       - checkout
       - restore_cache: *restore_cache
       - run: *update_dependencies
-      - run:
-          name: Run tests
-          command: stack --no-terminal test
+      - run: *run_tests
       - run:
           name: Install executable
           command: stack --no-terminal install
