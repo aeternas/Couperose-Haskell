@@ -1,4 +1,10 @@
 aliases:
+  - &git_checkout
+    name: Checkout
+    command: |
+      mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+      git clone --depth=50 -b $CIRCLE_BRANCH $CIRCLE_REPOSITORY_URL ./ && \
+      git checkout $CIRCLE_SHA1
   - &save_cache
     name: Cache Dependencies
     key: couperose-haskell-v1-{{ checksum "stack.yaml" }}-{{ checksum "couperose-haskell.cabal" }}
@@ -27,7 +33,7 @@ jobs:
     docker:
       - image: fpco/stack-build:lts
     steps:
-      - checkout
+      - run: *git_checkout
       - restore_cache: *restore_cache
       - run: *update_dependencies
       - run: *run_tests
