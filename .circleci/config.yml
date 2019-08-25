@@ -2,7 +2,7 @@ aliases:
   - &git_checkout
     name: Checkout
     command: |
-      apt-get update && apt-get install -y openssh && \
+      apt-get update && apt-get install -y openssh-server && \
       mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
       pwd
       ls -liah
