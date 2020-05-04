@@ -1,8 +1,10 @@
-module Main where
+import Test.HUnit
 import Stemming (stem)
 
-import System.Exit (exitFailure)
+testStemming :: Test
+testStemming =
+    TestCase $ assertEqual "Should return `consult`"
+                           "consult" (stem "consulting" "consultant" "" 0)
 
-main = do
-    putStrLn "This test always fails!"
-    exitFailure
+main :: IO Counts
+main = runTestTT $ TestList [testStemming]
