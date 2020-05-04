@@ -1,5 +1,5 @@
-import Test.HUnit
 import Stemming (stem)
+import Test.HUnit
 
 testStemming :: Test
 testStemming =
