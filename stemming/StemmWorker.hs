@@ -1,1 +1,4 @@
-Stem :: (String a) -> (String b) -> (String c)
+module Stemming
+
+stem :: String -> String -> String -> Int -> String
+stem firstWord secondWord result offset = ""
