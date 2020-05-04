@@ -1,10 +1,11 @@
 module Stemming where
 
-stem :: String -> String -> String -> Int -> String
-stem firstWord secondWord result offset
-    | firstChar == secondChar = stem firstWord secondWord finalResult $ offset + 1
+stem :: String -> String -> Int -> String
+stem input result offset
+    | firstChar == secondChar = stem input finalResult $ offset + 1
     | otherwise = result
-    where firstChar = firstWord!!offset
-          secondChar = secondWord!!offset
+    where words' = words input
+          firstChar = (words'!!0)!!offset
+          secondChar = (words'!!1)!!offset
           finalResult = result ++ firstChar:[]
           finalOffset = offset + 1
