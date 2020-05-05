@@ -17,7 +17,7 @@ aliases:
     keys:
       - couperose-haskell-v1-{{ checksum "stack.yaml" }}-{{ checksum "couperose-haskell.cabal" }}
   - &store_artifacts
-    path: ~/.local/bin/circleci-couperose-haskell
+    path: ~/.local/bin/couperose-haskell
     destination: circleci-couperose-haskell
   - &update_dependencies
     name: Resolve/Update Dependencies
