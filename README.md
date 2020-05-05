@@ -26,7 +26,11 @@ consult
 
 You can also build a binary with `stack` (or old `cabal`) as well:
 
-`$ cabal build`
+```
+$ cabal build`
+```
 or
-`$ stack install`
+```
+$ stack install
+```
 …and shortly then binary could be found in `./dist`
