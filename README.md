@@ -1,3 +1,11 @@
+Build Status
+------------
+
+Branch | Status
+| ------------- |:-------------:|
+Master      | [![Build Status](https://circleci.com/gh/aeternas/Couperose-Haskell/tree/master.svg?style=svg)](https://circleci.com/gh/aeternas/Couperose-Haskell/tree/master)
+Development | [![Build Status](https://circleci.com/gh/aeternas/Couperose-Haskell/tree/development.svg?style=svg)](https://circleci.com/gh/aeternas/Couperose-Haskell/tree/development)
+
 # Couperose-Haskell
 Cache warmer solution for SwadeshNess project writter on Haskell
 
@@ -15,3 +23,14 @@ Enter words to stem
 consulting consultant
 consult
 ```
+
+You can also build a binary with `stack` (or old `cabal`) as well:
+
+```
+$ cabal build`
+```
+or
+```
+$ stack install
+```
+…and shortly then binary could be found in `./dist`
