@@ -8,4 +8,3 @@ stem input result offset
           firstChar = (words'!!0)!!offset
           secondChar = (words'!!1)!!offset
           finalResult = result ++ firstChar:[]
-          finalOffset = offset + 1
