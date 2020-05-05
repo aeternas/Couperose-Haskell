@@ -23,3 +23,10 @@ Enter words to stem
 consulting consultant
 consult
 ```
+
+You can also build a binary with `stack` (or old `cabal`) as well:
+
+`$ cabal build`
+or
+`$ stack install`
+…and shortly then binary could be found in `./dist`
