@@ -1,3 +1,13 @@
+Build Status
+------------
+
+Branch | Status
+| ------------- |:-------------:|
+Master      | [![Build Status](https://circleci.com/gh/aeternas/Couperose-Haskell/tree/master.svg?style=svg)](https://circleci.com/gh/aeternas/Couperose-Haskell/tree/master)
+Development | [![Build Status](https://circleci.com/gh/aeternas/Couperose-Haskell/tree/development.svg?style=svg)](https://circleci.com/gh/aeternas/Couperose-Haskell/tree/development)
+
+[![Build Status](https://travis-ci.org/aeternas/Couperose-Haskell.svg?branch=development)](https://travis-ci.org/aeternas/Couperose-Haskell)
+
 # Couperose-Haskell
 Cache warmer solution for SwadeshNess project writter on Haskell
 
