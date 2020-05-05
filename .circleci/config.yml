@@ -4,7 +4,7 @@ aliases:
     command: |
       apt-get update && apt-get install -y openssh-server && \
       mkdir -p ~/.ssh && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config && \
-      git clone --depth 1 -b $CIRCLE_BRANCH $CIRCLE_REPOSITORY_URL ./ && \
+      git clone --depth=1 -b $CIRCLE_BRANCH $CIRCLE_REPOSITORY_URL ./ && \
       git checkout $CIRCLE_SHA1
   - &save_cache
     name: Cache Dependencies
