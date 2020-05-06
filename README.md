@@ -27,7 +27,7 @@ consult
 You can also build a binary with `stack` (or old `cabal`) as well:
 
 ```
-$ cabal build`
+$ cabal build
 ```
 or
 ```
