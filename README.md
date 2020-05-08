@@ -7,7 +7,7 @@ Master      | [![Build Status](https://circleci.com/gh/aeternas/Couperose-Haskel
 Development | [![Build Status](https://circleci.com/gh/aeternas/Couperose-Haskell/tree/development.svg?style=svg)](https://circleci.com/gh/aeternas/Couperose-Haskell/tree/development)
 
 # Couperose-Haskell
-Cache warmer solution for [SwadeshNess](https://github.com/aeternas/SwadeshNess) project writter on Haskell
+Cache warmer solution for [SwadeshNess](https://github.com/aeternas/SwadeshNess) project written in Haskell
 
 # Features
 Kinda naive [stemming](https://en.wikipedia.org/wiki/Stemming?oldformat=true) algorithm. Stemming is one of the [unresolved problems in computer science](https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_computer_science?oldformat=true#Natural_Language_Processing_algorithms) in the NLP area.
