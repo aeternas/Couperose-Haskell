@@ -41,7 +41,7 @@ aliases:
 # -------------------------
 version: 2.1
 jobs:
-  build:
+  build_and_test:
     docker:
       - image: fpco/stack-build:lts
     working_directory: *work_dir
@@ -51,12 +51,6 @@ jobs:
       - run: *update_dependencies
       - save_cache: *save_cache
       - persist_to_workspace: *persist_to_workspace
-  test: 
-    docker:
-      - image: fpco/stack-build:lts
-    working_directory: *work_dir
-    steps:
-      - attach_workspace: *attach_workspace
       - run: *run_tests
   install_and_store_artifacts:
     docker:
@@ -66,17 +60,15 @@ jobs:
       - attach_workspace: *attach_workspace
       - run: *install_executable
       - store_artifacts: *store_artifacts
+
 # -------------------------
 #        WORK FLOWS
 # -------------------------
 workflows:
   version: 2.1
-  build-test:
+  build-test-store:
     jobs:
-      - build
-      - test:
-          requires:
-            - build
+      - build_and_test
       - install_and_store_artifacts:
           requires:
-            - test
+            - build_and_test
