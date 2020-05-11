@@ -35,6 +35,10 @@ aliases:
   - &install_executable
     name: Install executable
     command: stack --no-terminal install
+
+# -------------------------
+#        JOBS
+# -------------------------
 version: 2.1
 jobs:
   build:
@@ -57,9 +61,14 @@ jobs:
     working_directory: *work_dir
     steps:
       - attach_workspace: *attach_workspace
+# -------------------------
+#        WORK FLOWS
+# -------------------------
 workflows:
   version: 2.1
   build-test:
     jobs:
       - build
-      - test
+      - test:
+          requires:
+            - build
