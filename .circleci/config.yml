@@ -49,10 +49,7 @@ jobs:
       - run: *git_checkout
       - restore_cache: *restore_cache
       - run: *update_dependencies
-      - run: *run_tests
-      - run: *install_executable
       - save_cache: *save_cache
-      - store_artifacts: *store_artifacts
       - persist_to_workspace: *persist_to_workspace
   test: 
     docker:
@@ -60,6 +57,15 @@ jobs:
     working_directory: *work_dir
     steps:
       - attach_workspace: *attach_workspace
+      - run: *run_tests
+  install_and_store_artifacts:
+    docker:
+      - image: fpco/stack-build:lts
+    working_directory: *work_dir
+    steps:
+      - attach_workspace: *attach_workspace
+      - run: *install_executable
+      - store_artifacts: *store_artifacts
 # -------------------------
 #        WORK FLOWS
 # -------------------------
@@ -71,3 +77,6 @@ workflows:
       - test:
           requires:
             - build
+      - install_and_store_artifacts:
+          requires:
+            - test
