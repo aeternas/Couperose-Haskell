@@ -6,6 +6,13 @@ aliases:
       mkdir -p ~/.ssh && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config && \
       git clone --depth=1 -b $CIRCLE_BRANCH $CIRCLE_REPOSITORY_URL ./ && \
       git checkout $CIRCLE_SHA1
+  - &work_dir ~/project
+  - &attach_workspace
+    at: ~/project
+  - &persist_to_workspace
+    root: .
+    paths:
+      - .
   - &save_cache
     name: Cache Dependencies
     key: couperose-haskell-v1-{{ checksum "stack.yaml" }}-{{ checksum "couperose-haskell.cabal" }}
@@ -28,21 +35,40 @@ aliases:
   - &install_executable
     name: Install executable
     command: stack --no-terminal install
+
+# -------------------------
+#        JOBS
+# -------------------------
 version: 2.1
 jobs:
-  build:
+  build_and_test:
     docker:
       - image: fpco/stack-build:lts
+    working_directory: *work_dir
     steps:
       - run: *git_checkout
       - restore_cache: *restore_cache
       - run: *update_dependencies
-      - run: *run_tests
-      - run: *install_executable
       - save_cache: *save_cache
+      - persist_to_workspace: *persist_to_workspace
+      - run: *run_tests
+  install_and_store_artifacts:
+    docker:
+      - image: fpco/stack-build:lts
+    working_directory: *work_dir
+    steps:
+      - attach_workspace: *attach_workspace
+      - run: *install_executable
       - store_artifacts: *store_artifacts
+
+# -------------------------
+#        WORK FLOWS
+# -------------------------
 workflows:
   version: 2.1
-  build-test:
+  build-test-store:
     jobs:
-      - build
+      - build_and_test
+      - install_and_store_artifacts:
+          requires:
+            - build_and_test
