@@ -3,7 +3,7 @@
 
 name:                couperose-haskell
 version:             0.1.0.0
--- synopsis:         Cache warmer solution for SwadeshNess
+synopsis:            Cache warmer solution for SwadeshNess with stemming feature
 -- description:
 -- license:
 license-file:        LICENSE
